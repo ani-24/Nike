@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const cors = require("cors");
 
 // starting the express server
 const app = express();
@@ -20,13 +21,14 @@ const Shoe = require("./model/shoeSchema");
 // setting up the view engine
 app.set("view engine", "ejs");
 
-// don't know what to call it but it's may be middleware
+// don't know what to call it
 app.use(express.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
+app.use(cors());
 
 // Image stuff (I don't know what's in it, I just copied and pasted from geeksforgeeks)
 const storage = multer.diskStorage({
