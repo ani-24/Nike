@@ -1,6 +1,9 @@
 // importing modules
 const express = require("express");
 const bodyParser = require("body-parser");
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 // starting the express server
 const app = express();
@@ -25,15 +28,41 @@ app.use(
   })
 );
 
+// Image stuff (I don't know what's in it, I just copied and pasted from geeksforgeeks)
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now());
+  },
+});
+
+const upload = multer({ storage });
+
 // ROUTES
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/", async (req, res) => {
+app.post("/", upload.single("img"), async (req, res, next) => {
   try {
-    const shoe = new Shoe(req.body);
-    const result = await shoe.save();
+    const obj = {
+      name: req.body.name,
+      img: {
+        data: fs.readFileSync(
+          path.join(__dirname + "/uploads/" + req.file.filename)
+        ),
+        contentType: "image/png",
+      },
+    };
+    const result = await Shoe.create(obj, (err, item) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect("/");
+      }
+    });
     if (result) {
       res.status(201).render("index");
     }
@@ -45,7 +74,7 @@ app.post("/", async (req, res) => {
 
 app.get("/shoes", async (req, res) => {
   const shoes = await Shoe.find().sort();
-  res.status(200).render("shoes", { shoes });
+  res.status(200).json(shoes);
 });
 
 // setting up server to the port

@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="container mt-5">
-      <form method="POST" action="/" enctype="application/json">
+      <form method="POST" action="/" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="name" class="form-label">Shoe Name:</label>
           <input
@@ -24,6 +24,10 @@
             aria-describedby="shoe"
             name="name"
           />
+        </div>
+        <div class="mb-3">
+          <label for="img">Product image:</label>
+          <input type="file" name="img" id="img" />
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
       </form>
