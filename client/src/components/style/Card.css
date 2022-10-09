@@ -1,0 +1,33 @@
+.card_container{
+    width: 90%;
+    height: auto;
+    border: 2px solid rgb(0, 0, 0);
+    justify-self: center;
+    padding: 15px 1px 15px 1px ; 
+    
+
+}
+
+.img_product{
+    width: 90%;
+}
+
+.card_footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 25px 0 30px ;
+    align-items: center;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.shopping_btn{
+      height: 30px;
+      background-color: transparent;
+}
+
+.product_Name{
+    font-weight: bold;
+}
+

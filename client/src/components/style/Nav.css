@@ -1,0 +1,26 @@
+nav{
+    display: flex;
+    height: 45px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px 0px 15px;
+    background-color: rgb(42, 107, 163);
+    color: aliceblue;
+    box-shadow: 5px 5px 5px rgb(255, 255, 255);
+    
+}
+
+.navList{
+    display: flex;
+}
+
+li{
+    margin-left: 10px;
+    margin-right: 10px;
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color: aliceblue;
+}
