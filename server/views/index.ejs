@@ -14,53 +14,23 @@
   </head>
   <body class="bg-dark text-white">
     <div class="container mt-5">
-      <form method="POST" action="/" enctype="multipart/form-data">
-        <div class="mb-3">
-          <label for="name" class="form-label">Shoe Name:</label>
-          <input
-            type="text"
-            class="form-control bg-dark text-white"
-            id="name"
-            aria-describedby="shoe"
-            name="name"
-          />
+      <div class="row">
+        <% shoes.forEach(el => { %>
+        <div class="card bg-dark" style="width: 18rem">
+          <img src="<%= el.img %>" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title"><%= el.name %></h5>
+            <p class="card-text"><%= el.desc %></p>
+            <small class="card-text"><%= el.price %></small>
+            <div class="card-footer">
+              <a href="/admin/update/<%= el._id %>" class="btn btn-primary"
+                >Edit</a
+              >
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="desc" class="form-label">Description:</label>
-          <input
-            type="text"
-            class="form-control bg-dark text-white"
-            id="desc"
-            aria-describedby="shoe"
-            name="desc"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="price" class="form-label">Product Price:</label>
-          <input
-            type="text"
-            class="form-control bg-dark text-white"
-            id="price"
-            aria-describedby="shoe"
-            name="price"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="color" class="form-label">Color Varieties:</label>
-          <input
-            type="text"
-            class="form-control bg-dark text-white"
-            id="color"
-            aria-describedby="shoe"
-            name="color"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="img">Product image:</label>
-          <input type="file" name="img" id="img" />
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
+        <% }) %>
+      </div>
     </div>
 
     <script

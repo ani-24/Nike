@@ -6,20 +6,13 @@ const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
 
+const { adminRouter } = require("./routes/admin");
+
 // starting the express server
 const app = express();
 
 // adding port
 const port = process.env.PORT || 5000;
-
-// connecting to the database
-require("./db/conn");
-
-// adding the schema
-const Shoe = require("./model/shoeSchema");
-
-// setting up the view engine
-app.set("view engine", "ejs");
 
 // don't know what to call it
 app.use(express.json());
@@ -29,6 +22,20 @@ app.use(
   })
 );
 app.use(cors());
+
+// connecting to the database
+require("./db/conn");
+
+// adding the schema
+const Shoe = require("./model/shoeSchema");
+const { authUser, authAdmin } = require("./middleware/admin");
+
+// Adding the routers
+app.use("/users", require("./routes/users"));
+app.use("/admin", require("./routes/admin"));
+
+// setting up the view engine
+app.set("view engine", "ejs");
 
 // Image stuff (I don't know what's in it, I just copied and pasted from geeksforgeeks)
 const storage = multer.diskStorage({
@@ -43,8 +50,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ROUTES
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", async (req, res) => {
+  const shoes = await Shoe.find().sort();
+  res.render("index", { shoes });
 });
 
 app.post("/", upload.single("img"), async (req, res, next) => {
@@ -57,6 +65,9 @@ app.post("/", upload.single("img"), async (req, res, next) => {
         ),
         contentType: "image/png",
       },
+      desc: req.body.desc,
+      price: req.body.price,
+      color: req.body.color,
     };
     const result = await Shoe.create(obj, (err, item) => {
       if (err) {
