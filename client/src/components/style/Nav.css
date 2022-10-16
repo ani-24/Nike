@@ -1,26 +1,96 @@
-nav{
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #002e94;
+  height: 45px;
+  padding: 0px 15px 0px 15px;
+}
+
+.logo {
+  color: aliceblue;
+  font-size: large;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.toggle_menu {
+  display: none;
+}
+
+.navUl {
+  display: flex;
+}
+
+.navLinks {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: aliceblue;
+  text-decoration: none;
+  list-style-type: none;
+  font-weight: bold;
+}
+
+.links {
+  margin-top: 5px;
+}
+
+.signUp {
+  background-color: aliceblue;
+  color: #002e94;
+  width: 65px;
+  text-align: center;
+  height: 25px;
+  border-radius: 20px;
+  margin-top: 2.5px;
+}
+
+@media (max-width: 550px) {
+  .navBar {
+    padding: 0px 0px 0px 0px;
     display: flex;
-    height: 45px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 15px 0px 15px;
-    background-color: rgb(42, 107, 163);
+    justify-content: center;
+  }
+
+  .logo {
+    padding-top: 5px;
+  }
+
+  .toggle_menu {
+    display: flex;
     color: aliceblue;
-    box-shadow: 5px 5px 5px rgb(255, 255, 255);
-    
-}
+    font-weight: bolder;
+    top: 20px;
+    font-size: 15px;
+    position: absolute;
+    right: 15px;
+  }
 
-.navList{
-    display: flex;
-}
-
-li{
-    margin-left: 10px;
-    margin-right: 10px;
-    list-style-type: none;
-}
-
-a{
+  .navLinks {
+    color: aliceblue;
     text-decoration: none;
-    color: aliceblue;
+    list-style-type: none;
+    font-weight: bold;
+  }
+
+  .navUl {
+    display: none;
+  }
+
+  .showNav {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(51, 135, 209);
+    margin-top: 680px;
+    text-align: center;
+    margin-left: -35px;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  .signUp {
+    background-color: aliceblue;
+    color: #002e94;
+  }
 }

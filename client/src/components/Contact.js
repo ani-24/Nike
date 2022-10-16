@@ -1,23 +1,38 @@
-import React from 'react'
-import './style/Contact.css'
+import React from "react";
+import "./style/Contact.css";
 
 function Contact() {
   return (
-    <div className='Contact_container'>
-         
-        <form className='form'>
-            <input type={'text'} placeholder={'Email'} autoComplete='false'></input>
-            <input type={'text'} placeholder={'Name'}  autoComplete='false'></input>
-             <textarea placeholder='Message'></textarea>
-            <input type={'submit'} ></input>
-
+    <React.Fragment>
+      <div class="Contact_container">
+        <form>
+          <h1 className="contact_us">Contact Us</h1>
+          <input
+            name="name"
+            placeholder="What is your name?"
+            class="name"
+            required
+          />
+          <input
+            name="emailaddress"
+            placeholder="What is your email?"
+            class="email"
+            type="email"
+            required
+          />
+          <textarea
+            rows="4"
+            cols="50"
+            name="subject"
+            placeholder="Please enter your message"
+            class="message"
+            required
+          ></textarea>
+          <input name="submit" class="btn" type="submit" value="Send" />
         </form>
-       <div className='text'>
-           <h1>Contact Us</h1>
-           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit dolor nec pharetra rutrum. Suspendisse gravida a eros vel egestas. Pellentesque euismod, tellus bibendum vehicula dapibus, dolor est pulvinar sapien, eget vulputate odio odio et nisi. Etiam consectetur in augue eget pharetra. Aenean lobortis nisl quis odio consequat pulvinar.</p>
-       </div>
-    </div>
-  )
+      </div>
+    </React.Fragment>
+  );
 }
 
-export default Contact
+export default Contact;
