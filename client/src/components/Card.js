@@ -1,20 +1,25 @@
-import React from 'react'
-import '../components/style/Card.css'
-import Img from '../../src/images/Home.jpg'
-import {HiShoppingCart} from 'react-icons/hi'
+import React from "react";
+import "./style/Card.css";
+import Img from "../Img/HeaderImg.png";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Card() {
   return (
-      <div className='card_container'>
-              <img src={Img} className='img_product'></img>
-              <div className='card_footer'>
-                    <div>
-                        <p><span className='product_Name'>ProductName</span> <br/> <span className='price'>200$</span></p>
-                    </div>
-                    <button><HiShoppingCart  className='shopping_btn'/></button>
-              </div>
+    <React.Fragment>
+      <div class="product-card">
+        <div class="product-tumb">
+          <img src={Img} />
+        </div>
+        <div className="description">
+          <p class="Product_Name">Name Product</p>
+          <hr />
+          <p className="price">
+            300% <span>{<FaShoppingCart />}</span>
+          </p>
+        </div>
       </div>
-  )
+    </React.Fragment>
+  );
 }
 
-export default Card
+export default Card;
