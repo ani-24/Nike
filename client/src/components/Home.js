@@ -10,7 +10,6 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setShoes(data);
-        console.log(data);
       });
   }, []);
 
@@ -18,7 +17,7 @@ function Home() {
     <React.Fragment>
       <Header />
       <div className="Card_Container">
-        {shoes.map((el) => (
+        {shoes?.map((el) => (
           <Card
             key={el._id}
             name={el.name}
