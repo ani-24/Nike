@@ -12,15 +12,13 @@ function toBase64(arr) {
   const base64 = btoa(
     arr.reduce((data, byte) => data + String.fromCharCode(byte), "")
   );
-  console.log(base64);
   return base64;
 }
 
 adminRouter.get("/", adminAuth, async (req, res) => {
   const shoes = await Shoe.find().sort();
   shoes.forEach((el) => {
-    el.img = `data:image/png;base64,${el.img.toString("base64")}`;
-    console.log(el.img);
+    el.img = `data:image/png;base64,${toBase64(el.img)}`;
   });
   res.render("index", { shoes });
 });
@@ -45,16 +43,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-adminRouter.post("/add", upload.single("img"), async (req, res, next) => {
+adminRouter.post("/add", async (req, res, next) => {
   try {
     const obj = {
       name: req.body.name,
-      img: {
-        data: fs.readFileSync(
-          path.join(__dirname, `../uploads/${req.file.filename}`)
-        ),
-        contentType: "image/png",
-      },
       desc: req.body.desc,
       price: req.body.price,
       color: req.body.color,
