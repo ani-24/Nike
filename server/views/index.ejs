@@ -12,24 +12,34 @@
       crossorigin="anonymous"
     />
   </head>
-  <body class="bg-dark text-white">
+  <body>
     <div class="container mt-5">
-      <div class="row">
+      <div class="row gx-2">
         <% shoes.forEach(el => { %>
-        <div class="card bg-dark" style="width: 18rem">
-          <img src="<%= el.img %>" class="card-img-top" alt="..." />
+        <div class="card col-3" style="width: 18rem">
+          <div class="card-img">
+            <img src="<%= el.img %>" alt="" />
+          </div>
           <div class="card-body">
             <h5 class="card-title"><%= el.name %></h5>
             <p class="card-text"><%= el.desc %></p>
             <small class="card-text"><%= el.price %></small>
-            <div class="card-footer">
+            <div class="card-footer mt-2">
               <a href="/admin/update/<%= el._id %>" class="btn btn-primary"
                 >Edit</a
               >
+              <button onclick="remove('<%= el._id %>')" class="btn btn-danger">
+                Delete
+              </button>
             </div>
           </div>
         </div>
         <% }) %>
+        <div class="card col-4">
+          <div class="card-body">
+            <a href="/admin/add" class="btn btn-success">Add</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -38,5 +48,17 @@
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const remove = (id) => {
+        console.log(id);
+        fetch(`/admin/delete/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        }).then(() => window.location.reload());
+      };
+    </script>
   </body>
 </html>

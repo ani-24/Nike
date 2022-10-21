@@ -35,8 +35,7 @@ app.set("view engine", "ejs");
 
 // ROUTES
 app.get("/", async (req, res) => {
-  const shoes = await Shoe.find().sort();
-  res.render("index", { shoes });
+  res.redirect("/admin");
 });
 
 app.get("/shoes", async (req, res) => {
