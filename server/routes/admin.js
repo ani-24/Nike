@@ -43,7 +43,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-adminRouter.post("/add", async (req, res, next) => {
+adminRouter.post("/add", adminAuth, async (req, res, next) => {
   try {
     const obj = {
       name: req.body.name,
